@@ -130,7 +130,6 @@ const Home = () => {
                 className={`hero-slide ${index === currentSlide ? 'active' : ''}`}
                 style={{
                   backgroundImage: `url(${slide.image})`,
-                  display: index === currentSlide ? 'block' : 'none',
                 }}
               >
                 <div className="slide-overlay"></div>
@@ -157,10 +156,6 @@ const Home = () => {
                 onClick={() => setCurrentSlide(idx)}
               />
             ))}
-          </div>
-          <div className="scroll-indicator">
-            <div className="scroll-line"></div>
-            <span>Scroll Down</span>
           </div>
         </section>
 
