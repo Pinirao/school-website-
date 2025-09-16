@@ -7,14 +7,5 @@
     "src/api/**": {
       "maxDuration": 30
     }
-  },
-  "build": {
-    "env": {
-      "CI": "false"
-    },
-    "commands": {
-      "install": "npm install",
-      "build": "npm run build"
-    }
   }
 }
