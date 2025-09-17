@@ -12,8 +12,18 @@ const Signup = () => {
 
   const handleSignup = () => {
     if (form.username && form.email && form.password) {
-      alert(`Account created for ${form.username}!`);
-      setForm({ username: '', email: '', password: '' });
+      // Save user credentials in localStorage
+      const users = JSON.parse(localStorage.getItem('users')) || [];
+      const isUserExists = users.some(user => user.username === form.username);
+
+      if (isUserExists) {
+        alert('Username already exists. Please choose a different username.');
+      } else {
+        users.push({ username: form.username, password: form.password });
+        localStorage.setItem('users', JSON.stringify(users));
+        alert(`Account created for ${form.username}!`);
+        setForm({ username: '', email: '', password: '' });
+      }
     } else {
       alert('Please fill out all fields.');
     }

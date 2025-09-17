@@ -16,14 +16,18 @@ const Login = () => {
 
   const handleLogin = () => {
     if (form.username && form.password) {
-      // Use AuthContext login function
-      login();
-      
-      // Show welcome message
-      alert(`Welcome, ${form.username}!`);
-      
-      // Navigate to home page
-      navigate('/');
+      const users = JSON.parse(localStorage.getItem('users')) || [];
+      const isValidUser = users.some(
+        user => user.username === form.username && user.password === form.password
+      );
+
+      if (isValidUser) {
+        alert(`Welcome, ${form.username}!`);
+        localStorage.setItem('isAuthenticated', 'true');
+        navigate('/');
+      } else {
+        alert('Invalid username or password.');
+      }
     } else {
       alert('Please enter valid credentials.');
     }

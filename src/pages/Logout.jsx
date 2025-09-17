@@ -32,16 +32,9 @@ const Logout = () => {
   }, [isLoggedOut, countdown, navigate]);
 
   const handleLogout = () => {
-    // Perform logout operations using AuthContext
-    logout();
-    
-    // Clear local storage items
-    localStorage.removeItem('authToken');
     localStorage.removeItem('isAuthenticated');
-    localStorage.removeItem('userData');
-    
-    // Set logout state
-    setIsLoggedOut(true);
+    alert('You have been logged out.');
+    navigate('/login');
   };
 
   const handleCancel = () => {

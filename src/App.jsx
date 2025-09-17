@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import AuthProvider from './context/AuthContext';
 import Header from './components/Header/Header';
 import Home from './pages/Home';
@@ -20,7 +20,6 @@ import Grades from './pages/Grades';
 import Logout from './pages/Logout';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
-import ProtectedRoute from './components/ProtectedRoute';
 import ApplicationForm from './pages/ApplicationForm'; // Import the ApplicationForm component
 import ProgramsDetail from './pages/ProgramsDetail';
 import StandardsDetail from './pages/StandardsDetail';
@@ -33,6 +32,11 @@ import InnovativeLearning from './pages/InnovativeLearning';
 import SchedulePage from './pages/SchedulePage';
 import ScrollToTop from './components/ScrollToTop';
 import CharacterDevelopment from './pages/CharacterDevelopment'; // Import the CharacterDevelopment component
+
+const ProtectedRoute = ({ children }) => {
+  const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
+  return isAuthenticated ? children : <Navigate to="/login" />;
+};
 
 function App() {
   return (
